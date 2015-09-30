@@ -1,4 +1,4 @@
-var js=function() {
+var set = function(){
 //set the current page to home
     $("#about").hide();
     $("#more").hide();
@@ -21,4 +21,4 @@ var js=function() {
     });
 });
 //
-}
+};
