@@ -1,3 +1,4 @@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 var set = function(){
 //set the current page to home
     $("#about").hide();
