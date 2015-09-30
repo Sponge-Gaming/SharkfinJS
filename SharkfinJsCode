@@ -1,3 +1,4 @@
+var js=function() {
 //set the current page to home
     $("#about").hide();
     $("#more").hide();
@@ -20,3 +21,4 @@
     });
 });
 //
+}
