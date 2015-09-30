@@ -1,0 +1,22 @@
+//set the current page to home
+    $("#about").hide();
+    $("#more").hide();
+    //change pages
+    $(document).ready(function(){
+    $("#homeNav").click(function(){
+        $("#home").show();
+        $("#about").hide();
+        $("#more").hide();
+    });
+    $("#aboutNav").click(function(){
+        $("#about").show();
+        $("#home").hide();
+        $("#more").hide();
+    });
+    $("#moreNav").click(function(){
+        $("#more").show();
+        $("#home").hide();
+        $("#about").hide();
+    });
+});
+//
