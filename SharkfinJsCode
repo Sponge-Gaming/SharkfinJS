@@ -1,25 +1,334 @@
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-var set = function(){
 //set the current page to home
-    $("#about").hide();
-    $("#more").hide();
-    //change pages
-    $(document).ready(function(){
-    $("#homeNav").click(function(){
-        $("#home").show();
-        $("#about").hide();
-        $("#more").hide();
-    });
-    $("#aboutNav").click(function(){
-        $("#about").show();
-        $("#home").hide();
-        $("#more").hide();
-    });
-    $("#moreNav").click(function(){
-        $("#more").show();
-        $("#home").hide();
-        $("#about").hide();
-    });
+$("#about").hide();
+$("#Games").hide();
+//change pages
+$(document).ready(function() {
+		$("#homeNav").click(function() {
+				$("#home").show();
+				$("#about").hide();
+				$("#Games").hide();
+		});
+		$("#aboutNav").click(function() {
+				$("#about").show();
+				$("#home").hide();
+				$("#Games").hide();
+		});
+		$("#gamesNav").click(function() {
+				$("#Games").show();
+				$("#home").hide();
+				$("#about").hide();
+		});
 });
-//
-};
+//games
+var sketchProc = function(processingInstance) {
+		with(processingInstance) {
+				size(400, 400);
+				frameRate(60);
+
+				// ProgramCodeGoesHere
+				{
+						//win
+						var winLvl = 7;
+						var winlvl = winLvl - 1;
+						//
+						var rq = false;
+						var collide = false;
+						var px = 200;
+						var py = height / 1.25;
+						var x = 200;
+						var r = true;
+						var l = false;
+						var right = false;
+						var left = false;
+						var up = false;
+						var down = false;
+						var spr = 0;
+						var spd = 0;
+						var level = 1;
+						var deaths = 0;
+						var keyPressed = function() {
+								if (keyCode === UP) {
+										up = true;
+								}
+								if (keyCode === DOWN) {
+										down = true;
+								}
+								if (keyCode === LEFT) {
+										left = true;
+								}
+								if (keyCode === RIGHT) {
+										right = true;
+								}
+						};
+						var keyReleased = function() {
+								if (keyCode === UP) {
+										up = false;
+								}
+								if (keyCode === DOWN) {
+										down = false;
+								}
+								if (keyCode === LEFT) {
+										left = false;
+								}
+								if (keyCode === RIGHT) {
+										right = false;
+								}
+						};
+						var mousePressed = function() {
+								if (rq === true) {
+										collide = false;
+										resetPerson();
+										rq = false;
+								}
+						};
+						var person = function() {
+								fill(255, 0, 255);
+								rect(px, py, 25, 25, 10);
+								if (up) {
+										py -= 2;
+								}
+								if (down && py <= height - 20) {
+										py += 2;
+								}
+								if (right && px <= width - 20) {
+										px += 2;
+								}
+								if (left && px >= 20) {
+										px -= 2;
+								}
+						};
+						var resetPerson = function() {
+								px = 200;
+								py = 350;
+						};
+						rectMode(CENTER);
+						var block = function(x, y, w, h) {
+								fill(100, 100, 100);
+								stroke(255, 255, 255);
+								rect(x, y, width / 16, height / 16);
+								if (px >= x - w && px <= x + w && py >= y - h && py <= y + h) {
+										collide = true;
+										deaths += 1;
+								}
+						};
+						//levels
+						var r = true;
+						var l = false;
+						var lvl1 = function(speed) {
+								block(x - 100, 200, 25, 25);
+								block(x + 100, 200, 25, 25);
+								block(x, 200, 25, 25);
+								block(x + 50, 125, 25, 25);
+								block(x - 50, 125, 25, 25);
+								block(x + 50, 275, 25, 25);
+								block(x - 50, 275, 25, 25);
+								//set speed
+								if (x <= width - 100 && r === true) {
+										x += speed;
+								}
+								if (x >= width - 100) {
+										l = true;
+										r = false;
+								}
+								if (x <= 100) {
+										r = true;
+										l = false;
+								}
+								if (x >= 100 && l === true) {
+										x -= speed;
+								}
+						};
+						var lvl2 = function(speed) {
+								block(x - 100, 200, 25, 25);
+								block(x + 100, 200, 25, 25);
+								block(x, 200, 25, 25);
+								block(x - 200, 200, 25, 25);
+								block(x + 200, 200, 25, 25);
+								block(x + 100, 125, 25, 25);
+								block(x - 100, 125, 25, 25);
+								block(x + 50, 275, 25, 25);
+								block(x - 50, 275, 25, 25);
+								//set speed
+								if (x <= width - 100 && r === true) {
+										x += speed;
+								}
+								if (x >= width - 100) {
+										l = true;
+										r = false;
+								}
+								if (x <= 100) {
+										r = true;
+										l = false;
+								}
+								if (x >= 100 && l === true) {
+										x -= speed;
+								}
+						};
+						var lvl3 = function(speed) {
+								block(x - 100, 200, 25, 25);
+								block(x + 100, 200, 25, 25);
+								block(x - 200, 200, 25, 25);
+								block(x + 200, 200, 25, 25);
+								block(x - 50, 150, 25, 25);
+								block(x + 50, 150, 25, 25);
+								block(x - 50, 250, 25, 25);
+								block(x + 50, 250, 25, 25);
+								//set speed
+								if (x <= width - 100 && r === true) {
+										x += speed;
+								}
+								if (x >= width - 100) {
+										l = true;
+										r = false;
+								}
+								if (x <= 100) {
+										r = true;
+										l = false;
+								}
+								if (x >= 100 && l === true) {
+										x -= speed;
+								}
+						};
+						var lvl4 = function(speed) {
+								block(x - 100, 200, 25, 25);
+								block(x + 100, 200, 25, 25);
+								block(x - 100, 250, 25, 25);
+								block(x + 100, 250, 25, 25);
+								block(x - 200, 200, 25, 25);
+								block(x + 200, 200, 25, 25);
+								block(x - 200, 250, 25, 25);
+								block(x + 200, 250, 25, 25);
+								block(x - 50, 150, 25, 25);
+								block(x + 50, 150, 25, 25);
+								block(x - 50, 300, 25, 25);
+								block(x + 50, 300, 25, 25);
+
+								//set speed
+								if (x <= width - 100 && r === true) {
+										x += speed;
+								}
+								if (x >= width - 100) {
+										l = true;
+										r = false;
+								}
+								if (x <= 100) {
+										r = true;
+										l = false;
+								}
+								if (x >= 100 && l === true) {
+										x -= speed;
+								}
+						};
+						var lvl5 = function(speed) {
+								block(x - 100, 200, 25, 25);
+								block(x + 100, 200, 25, 25);
+								block(x, 200, 25, 25);
+								block(x + 50, 125, 25, 25);
+								block(x - 50, 125, 25, 25);
+								block(x + 50, 275, 25, 25);
+								block(x - 50, 275, 25, 25);
+
+								block(x - 200, 200, 25, 25);
+								block(x + 200, 200, 25, 25);
+								block(x, 200, 25, 25);
+								block(x + 150, 125, 25, 25);
+								block(x - 150, 125, 25, 25);
+								block(x + 150, 275, 25, 25);
+								block(x - 150, 275, 25, 25);
+								//set speed
+								if (x <= width - 100 && r === true) {
+										x += speed;
+								}
+								if (x >= width - 100) {
+										l = true;
+										r = false;
+								}
+								if (x <= 100) {
+										r = true;
+										l = false;
+								}
+								if (x >= 100 && l === true) {
+										x -= speed;
+								}
+						};
+						var lvl6 = function(speed) {
+								block(x - 200, 200, 25, 25);
+								block(x, 200, 25, 25);
+								block(x + 200, 200, 25, 25);
+								//set speed
+								if (x <= width - 100 && r === true) {
+										x += speed;
+								}
+								if (x >= width - 100) {
+										l = true;
+										r = false;
+								}
+								if (x <= 100) {
+										r = true;
+										l = false;
+								}
+								if (x >= 100 && l === true) {
+										x -= speed;
+								}
+						};
+						var draw = function() {
+								if (collide === false) {
+										person();
+										if (level === 1) {
+												lvl1(2);
+										}
+										if (level === 2) {
+												lvl2(2);
+										}
+										if (level === 3) {
+												lvl3(2.5);
+										}
+										if (level === 4) {
+												lvl4(2.5);
+										}
+										if (level === 5) {
+												lvl5(4);
+										}
+										if (level === 6) {
+												lvl6(9);
+										}
+								}
+								fill(0, 50, 100, 20);
+								rect(width / 2, height / 2, width + 2, height + 2);
+								if (collide === true) {
+										background(255, 0, 0);
+										fill(0, 0, 0);
+										textSize(50);
+										textAlign(CENTER, CENTER);
+										text("YOU LOSE\nClick to restart", width / 2, height / 2);
+										rq = true;
+								}
+								fill(0, 255, 0, 150);
+								rect(width / 2, 25, width, 50);
+								if (py < 50) {
+										level = level + 1;
+										resetPerson();
+								}
+								if (level === winLvl) {
+										background(0, 255, 0);
+										fill(0, 0, 0);
+										textSize(40);
+										textAlign(CENTER, CENTER);
+										text("YOU WIN!", 200, 200);
+										textSize(25);
+										text("Deaths:" + deaths, width / 2, height / 1.5);
+								} else {
+										textSize(20);
+										fill(255, 255, 255);
+										textAlign(CENTER, CENTER);
+										text("level:" + level + "/" + winlvl, width - 60, height - 20);
+										text("Deaths:" + deaths, 60, height - 20);
+								}
+								noFill();
+								stroke(255);
+						};
+				}
+		}
+}; // Get the canvas that Processing-js will use
+var canvas = document.getElementById("mycanvas");
+// Pass the function sketchProc (defined in myCode.js) to Processing's constructor.
